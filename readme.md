@@ -1,21 +1,41 @@
-## Laravel PHP Framework
+Laravel Meetup Api Demo
+=======================
 
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/version.png)](https://packagist.org/packages/laravel/framework) [![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.png)](https://packagist.org/packages/laravel/framework) [![Build Status](https://travis-ci.org/laravel/framework.png)](https://travis-ci.org/laravel/framework) [![License](https://poser.pugx.org/laravel/framework/license.png)](https://packagist.org/packages/laravel/framework)
+## API en 5 minutos con Laravel 4.1.*, @ Laravel Buenos Aires
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, and caching.
 
-Laravel aims to make the development process a pleasing one for the developer without sacrificing application functionality. Happy developers make the best code. To this end, we've attempted to combine the very best of what we have seen in other web frameworks, including frameworks implemented in other languages, such as Ruby on Rails, ASP.NET MVC, and Sinatra.
+### Pasos
 
-Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+1. Setup Laravel (install + configs)
+2. Generar Migrations & Seeds
+3. Crear Models
+4. Crear relationships
+5. Crear controllers (index/show)
+6. Crear routes => resources => Nestear con un prefix
+7. Crear ApiController y agregar metodo response()
+8. Generar Auth HTTP via filters.php (migration + seed de users, Auth::basic('username'))
 
-## Official Documentation
 
-Documentation for the entire framework can be found on the [Laravel website](http://laravel.com/docs).
+### Que sigue/falta?
 
-### Contributing To Laravel
+* Repo Pattern
+* Transformations (para bindear respuesta)
+* Cache (queries + response)
+* Tests!
 
-**All issues and pull requests should be filed on the [laravel/framework](http://github.com/laravel/framework) repository.**
 
-### License
+## Setup
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+```
+git clone https://github.com/j0an/LaravelMeetupApiDemo.git LaravelMeetupApiDemo
+vagrant up
+vagrant ssh
+cd /vagrant
+composer install
+```
+
+configurar acceso a base de datos (y luego)
+
+```
+php artisan migrate --seed
+```
