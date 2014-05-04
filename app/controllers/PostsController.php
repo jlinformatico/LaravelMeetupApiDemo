@@ -1,7 +1,12 @@
 <?php
 
-class PostsController extends \BaseController {
+class PostsController extends ApiController {
 
+
+
+	function __construct(Post $post){
+		$this->post = $post;
+	}
 	/**
 	 * Display a listing of posts
 	 *
@@ -9,10 +14,11 @@ class PostsController extends \BaseController {
 	 */
 	public function index()
 	{
-		// dd('test');
-		$posts = Post::all();
 
-		return Response::json($posts);
+		$limit = Input::get('limit', 20);
+		$posts = $this->post->paginate($limit);
+
+		return $this->response($posts->toArray());
 	}
 
 	/**
@@ -23,11 +29,19 @@ class PostsController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		$post = Post::with(['comments', 'author'])->findOrFail($id);
 
-		return Response::json(['data'=>$post->toArray()])->setcallback(Input::get("callback"));
+		try {
+
+			$post = $this->post->with(['comments', 'author'])->findOrFail($id);	
+			return $this->response(['data'=>$post->toArray()]);
+
+		}
+		catch(Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+			return $this->response(['error'=>$e->getMessage()], 404);
+		}
+
 	}
 
-	
+
 
 }

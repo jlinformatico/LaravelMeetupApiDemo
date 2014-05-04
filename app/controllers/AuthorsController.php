@@ -1,18 +1,24 @@
 <?php
 
-class AuthorsController extends \BaseController {
+class AuthorsController extends ApiController {
+
+
+
+	function __construct(Author $author){
+		$this->author = $author;
+	}
 
 	/**
-	 * Display a listing of posts
+	 * Display a listing of authors
 	 *
 	 * @return Response
 	 */
 	public function index()
 	{
-		// dd('test');
-		$posts = Post::all();
 
-		return Response::json($posts);
+		$authors = $this->author->all();
+
+		return $this->response($authors);
 	}
 
 	/**
@@ -23,9 +29,9 @@ class AuthorsController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		$post = Post::findOrFail($id);
+		$author = $this->author->with('posts')->findOrFail($id);
 
-		return View::make('posts.show', compact('post'));
+		return $this->response($author);
 	}
 
 	
