@@ -3,37 +3,38 @@
 class AuthorsController extends ApiController {
 
 
-
-	function __construct(Author $author){
+	function __construct(Author $author)
+	{
 		$this->author = $author;
 	}
 
-	/**
-	 * Display a listing of authors
-	 *
-	 * @return Response
-	 */
+
 	public function index()
 	{
 
-		$authors = $this->author->all();
+		$limit = Input::get('limit', 10);
 
-		return $this->response($authors);
+		$authors = $this->author->paginate($limit);
+
+		return $this->response($authors->toArray());
 	}
 
-	/**
-	 * Display the specified post.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
+
 	public function show($id)
 	{
-		$author = $this->author->with('posts')->findOrFail($id);
 
-		return $this->response($author);
+		try {
+
+			$author = $this->author->with('posts')->findOrFail($id);
+			return $this->response(['data'=>$author->toArray()]);
+
+		}
+		catch(Illuminate\Database\Eloquent\ModelNotFoundException $e) 
+		{
+			return $this->response(['error'=>$e->getMessage()], 404);
+		}
+
 	}
 
-	
 
 }

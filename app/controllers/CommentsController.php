@@ -3,41 +3,35 @@
 class CommentsController extends ApiController {
 
 
-	function __construct(Comment $comment){
+	function __construct(Comment $comment)
+	{
 		$this->comment = $comment;
 	}
 
-	/**
-	 * Display a listing of posts
-	 *
-	 * @return Response
-	 */
 	public function index()
 	{
-
-
 		$limit = Input::get('limit', 10);
 
-		$posts = $this->comment->with('post')->paginate($limit);
+		$comments = $this->comment->with('post')->paginate($limit);
 
-		return Response::json([
-			'data' => $posts->toArray()
-		], 200)->setCallback(Input::get('callback'));;
+		return $this->response($comments->toArray());
 	}
 
-	/**
-	 * Display the specified post.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
+
 	public function show($id)
 	{
-		$post = $this->comment->with('post')->findOrFail($id);
 
-		return Response::json([
-			'data' => $post->toArray()
-		], 200)->setCallback(Input::get('callback'));;
+		try {
+
+			$comment = $this->comment->with('post')->findOrFail($id);
+			return $this->response(['data'=>$comment->toArray()]);
+
+		}
+		catch(Illuminate\Database\Eloquent\ModelNotFoundException $e) 
+		{
+			return $this->response(['error'=>$e->getMessage()], 404);
+		}
+
 	}
 
 
