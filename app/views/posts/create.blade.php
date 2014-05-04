@@ -1,0 +1,1 @@
+/Users/j0an/Sites/LaravelMeetup/app/views/Posts/create.blade.php
