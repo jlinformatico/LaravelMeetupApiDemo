@@ -21,13 +21,14 @@ Laravel Meetup Api Demo
 * Tests! (phpunit y/o http://frisbyjs.com/ y/o https://www.runscope.com/)
 
 ### Funciones para v2.
-* Rate limits
+* Rate limits (hint Cache::add('key', 0, 60); Cache::increment('key');)
 * Crear post (POST /v1/api/post {data})
 * Update de post (PUT /v1/api/post/{id} {data})
 * Borrado de post (DELETE /v1/api/post/{id})
 * CUD de autores
 * CUD de comentarios
 * Cache (queries + response)
+* Explode error codes (201, 403, 401, etc)
 
 
 ## Setup
