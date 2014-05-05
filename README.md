@@ -40,9 +40,9 @@ vagrant up
 vagrant ssh
 cd /vagrant
 composer install
-
-Configurar base de datos en app/config/database.php
-
+```
+Configurar base de datos en app/config/database.php, y...
+```
 php artisan migrate --seed
 ```
 
