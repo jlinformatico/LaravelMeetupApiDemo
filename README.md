@@ -15,14 +15,19 @@ Laravel Meetup Api Demo
 7. Crear ApiController y agregar metodo response()
 8. Generar Auth HTTP via filters.php (migration + seed de users, Auth::basic('username'))
 
-
 ### Que sigue/falta?
-
-* Repo Pattern
-* Transformations (para bindear respuesta)
-* Cache (queries + response)
-* Rate limits
+* Aplicar Repo Pattern
+* Transformations (bindear respuesta)
 * Tests! (phpunit y/o http://frisbyjs.com/ y/o https://www.runscope.com/)
+
+### Funciones para v2.
+* Rate limits
+* Crear post (POST /v1/api/post {data})
+* Update de post (PUT /v1/api/post/{id} {data})
+* Borrado de post (DELETE /v1/api/post/{id})
+* CUD de autores
+* CUD de comentarios
+* Cache (queries + response)
 
 
 ## Setup
@@ -33,10 +38,56 @@ vagrant up
 vagrant ssh
 cd /vagrant
 composer install
-```
 
-configurar acceso a base de datos (y luego)
+Configurar base de datos en app/config/database.php
 
-```
 php artisan migrate --seed
 ```
+
+
+
+## Documentacion
+
+### Autenticación
+
+La API usa autenticación basica de HTTP para todos los request. Es necesario pasarle un user/password valido (que se encuentran en la table "users" de la base de datos)
+
+Para probar su funcionamiento se puede usar este comando.
+
+`curl -u "user1:1234" http://localapidomain.dev/api/v1/post`
+
+### Formato de respuesta
+
+La API devuelve siempre formato JSON (o JSONP si se le pasa un callback en la url  ?callback=JSON_CALLBACK)
+
+
+### Codigos de resupuesta
+
+* **200:** Request OK
+* **404:** Model not found
+
+## API Endpoints
+
+### GET /api/v1/post
+
+Todos los posts
+
+### GET /api/v1/post/{id}
+
+Post by ID
+
+### GET /api/v1/author
+
+Todos los autores
+
+### GET /api/v1/author/{id}
+
+Autor by ID
+
+### GET /api/v1/comment
+
+Todos los comentarios
+
+### GET /api/v1/comment/{id}
+
+Comentario by ID
