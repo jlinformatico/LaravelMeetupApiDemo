@@ -35,6 +35,7 @@ Laravel Meetup Api Demo
 
 ```
 git clone https://github.com/j0an/LaravelMeetupApiDemo.git LaravelMeetupApiDemo
+cd LaravelMeetupApiDemo
 vagrant up
 vagrant ssh
 cd /vagrant
