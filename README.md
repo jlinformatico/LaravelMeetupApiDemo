@@ -21,7 +21,7 @@ Laravel Meetup Api Demo
 * Repo Pattern
 * Transformations (para bindear respuesta)
 * Cache (queries + response)
-* Tests! (phpunit o http://frisbyjs.com/)
+* Tests! (phpunit y/o http://frisbyjs.com/ y/o https://www.runscope.com/)
 
 
 ## Setup
