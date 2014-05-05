@@ -1,7 +1,7 @@
 Laravel Meetup Api Demo
 =======================
 
-## API en 5 minutos con Laravel 4.1.*, @ Laravel Buenos Aires
+## API en _(mas o menos) 10 minutos con Laravel 4.1.*, @ Laravel Buenos Aires
 
 
 ### Pasos
